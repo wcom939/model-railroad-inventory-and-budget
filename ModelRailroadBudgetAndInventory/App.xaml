@@ -2,6 +2,21 @@
     x:Class="ModelRailroadBudgetAndInventory.App"
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-    xmlns:local="using:ModelRailroadBudgetAndInventory">
+    xmlns:local="using:ModelRailroadBudgetAndInventory"
+    RequestedTheme="Dark">
+    <Application.Resources>
+        <ResourceDictionary>
 
+            <!--  Resource dictionaries  -->
+            <ResourceDictionary.MergedDictionaries>
+                <XamlControlsResources xmlns="using:Microsoft.UI.Xaml.Controls" />
+                <!--<ResourceDictionary Source="Controls/InteractiveSample.xaml" />
+                <ResourceDictionary Source="Controls/DocumentationBlock.xaml" />
+                <ResourceDictionary Source="Controls/ValidationTextBox.xaml" />-->
+            </ResourceDictionary.MergedDictionaries>
+
+            <!--  Misc resources  -->
+            <Thickness x:Key="DocumentationPageContentPadding">20</Thickness>
+        </ResourceDictionary>
+    </Application.Resources>
 </Application>
