@@ -1,0 +1,92 @@
+﻿<UserControl
+    x:Class="ModelRailroadBudgetAndInventory.Shell"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:muxc="using:Microsoft.UI.Xaml.Controls"
+    xmlns:ui="using:Microsoft.Toolkit.Uwp.UI"
+    xmlns:modelRailroadBudgetAndInventory="using:ModelRailroadBudgetAndInventory"
+    d:DesignHeight="800"
+    d:DesignWidth="1200"
+    muxc:BackdropMaterial.ApplyToRootOrPageBackground="True"
+    Loaded="Shell_OnLoaded"
+    mc:Ignorable="d">
+
+    <Grid>
+
+        <!--  Navigation view  -->
+        <muxc:NavigationView
+            x:Name="NavigationView"
+            BackRequested="NavigationView_OnBackRequested"
+            IsBackButtonVisible="Auto"
+            IsBackEnabled="False"
+            IsSettingsVisible="False"
+            IsTitleBarAutoPaddingEnabled="False"
+            ItemInvoked="NavigationView_OnItemInvoked">
+            <muxc:NavigationView.Resources>
+                <Thickness x:Key="NavigationViewContentMargin">0,32,0,0</Thickness>
+            </muxc:NavigationView.Resources>
+
+            <muxc:NavigationView.AutoSuggestBox>
+                <AutoSuggestBox
+                    AutomationProperties.Name="Search"
+                    PlaceholderText="Search"
+                    QueryIcon="Find"
+                    SuggestionChosen="AutoSuggestBox_OnSuggestionChosen"
+                    TextChanged="SearchBox_OnTextChanged">
+                    <AutoSuggestBox.ItemTemplate>
+                        <DataTemplate x:DataType="modelRailroadBudgetAndInventory:SampleEntry">
+                            <TextBlock Text="{x:Bind Name}" TextTrimming="CharacterEllipsis" />
+                        </DataTemplate>
+                    </AutoSuggestBox.ItemTemplate>
+                </AutoSuggestBox>
+            </muxc:NavigationView.AutoSuggestBox>
+
+            <muxc:NavigationView.MenuItems>
+                <muxc:NavigationViewItem
+                    x:Name="SettingsItem"
+                    Content="Settings"
+                    Icon="Setting"
+                    ToolTipService.ToolTip="Set the Database and Storage options in here, this is required before the other sections will be available" />
+                <muxc:NavigationViewItemSeparator />
+                <muxc:NavigationViewItem
+                    Content="Budget"
+                    Icon="Manage"
+                    IsEnabled="False"
+                    ToolTipService.ToolTip="Budgeting for your model railroad layout">
+                </muxc:NavigationViewItem>
+                <muxc:NavigationViewItem
+                    Content="Inventory"
+                    Icon="Library"
+                    IsEnabled="False"
+                    ToolTipService.ToolTip="Inventory for your model railroad layout">
+                </muxc:NavigationViewItem>
+            </muxc:NavigationView.MenuItems>
+
+            <muxc:NavigationView.Content>
+
+                <!--  Navigation frame  -->
+                <Frame x:Name="NavigationFrame" Navigated="NavigationFrame_OnNavigated" />
+            </muxc:NavigationView.Content>
+
+        </muxc:NavigationView>
+
+        <!--  Custom title bar  -->
+        <Border
+            x:Name="TitleBarBorder"
+            Height="40"
+            Margin="40,0,0,0"
+            Padding="8,0,0,0"
+            VerticalAlignment="Top"
+            Background="Transparent">
+            <StackPanel Orientation="Horizontal" Spacing="16">
+                <Image
+                    Width="16"
+                    Height="16"
+                    Source="ms-appx:///Assets/StoreLogo.scale-400.png" />
+                <TextBlock VerticalAlignment="Center" Text="Model Railroad Budget and Inventory" />
+            </StackPanel>
+        </Border>
+    </Grid>
+</UserControl>
